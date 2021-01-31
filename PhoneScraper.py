@@ -4,12 +4,24 @@
 from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 import re
+import os
+
+#Print warning that the script will create and remove a file called output.txt.
+warning = input ("This script will create and then delete a file called scripttemp.txt in the running directory. Would you like to continue (Y/N?)\n")
+if warning == "Y":
+    print ("Input accepted, continuing script.")
+elif warning == "N":
+    print ("Input accepted. Script will be halted.")
+    exit()
+else:
+    print ("Invalid input. Script will be halted.")
+    exit()
 
 #Takes input from user for their desired area code. Wordlist will be generated based on this.
 areacode = input ("Enter the area code you would like to make a wordlist for. Use the following format '123'. \n")
 
 #Read the webpage for the specified area code. This code pretends to be a browser to allow for scraping.
-req = Request('!!!URL goes here!!!' + areacode, headers={'User-Agent': 'Mozilla/5.0'})
+req = Request('https://www.allareacodes.com/' + areacode, headers={'User-Agent': 'Mozilla/5.0'})
 webpage = urlopen(req).read()
 
 #Parse and clean html down to the content we want.
@@ -26,3 +38,5 @@ data = open("output.txt","r")
 read = data.read()
 data = re.findall('\(\d{3}\)\s\d{3}', read)
 print (data)
+
+print ("Dataset creation successful.")
