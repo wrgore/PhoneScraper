@@ -6,7 +6,7 @@ from urllib.request import Request, urlopen
 import re
 import os
 
-#Print warning that the script will create and remove a file called output.txt.
+#Print warning that the script will create and remove a file called scripttemp.txt.
 warning = input ("This script will create and then delete a file called scripttemp.txt in the running directory. Would you like to continue (Y/N?)\n")
 if warning == "Y":
     print ("Input accepted, continuing script.")
@@ -29,14 +29,18 @@ soup = BeautifulSoup(webpage, 'html.parser')
 group = soup.find_all("div", attrs={"class": "list-group-item"})
 
 #Print cleaned data to a text file and close for later.
-rawareacodes = open("output.txt","a")
-print (group, file=rawareacodes)
-rawareacodes.close
+with open ("scripttemp.txt","a") as rawareacodes:
+    print (group, file=rawareacodes)
+    rawareacodes.close
 
 #REGEX to find area codes + prefixes in the data.
-data = open("output.txt","r")
-read = data.read()
-data = re.findall('\(\d{3}\)\s\d{3}', read)
-print (data)
+with open ("scripttemp.txt") as file:
+    read = file.read()
+    data = re.findall('\(\d{3}\)\s\d{3}', read)
+    print (data)
+    file.close
 
+#Clean up files and finish script.
+print ("Cleaning up files...")
+os.remove("scripttemp.txt")
 print ("Dataset creation successful.")
