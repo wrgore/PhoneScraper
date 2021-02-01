@@ -21,7 +21,7 @@ else:
 areacode = input ("Enter the area code you would like to make a wordlist for. Use the following format '123'. \n")
 
 #Read the webpage for the specified area code. This code pretends to be a browser to allow for scraping.
-req = Request('Any site with the data you want should work here, just change the input method and the parse and clean method.' + areacode, headers={'User-Agent': 'Mozilla/5.0'})
+req = Request('https://www.allareacodes.com/' + areacode, headers={'User-Agent': 'Mozilla/5.0'})
 webpage = urlopen(req).read()
 
 #Parse and clean html down to the content we want.
@@ -37,8 +37,13 @@ with open ("scripttemp.txt","a") as rawareacodes:
 with open ("scripttemp.txt") as file:
     read = file.read()
     data = re.findall('\(\d{3}\)\s\d{3}', read)
-    print (data)
     file.close
+
+#Trim data to just a list of numbers (remove input to get just prefixes and add back later)
+data = [data.replace("(","")for data in data]
+data = [data.replace(")","")for data in data]
+data = [data.replace(" ","")for data in data]
+print (data)
 
 #Clean up files and finish script.
 print ("Cleaning up files...")
