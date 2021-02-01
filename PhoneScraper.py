@@ -39,7 +39,7 @@ with open ("scripttemp.txt") as file:
     data = re.findall('\(\d{3}\)\s\d{3}', read)
     file.close
 
-#Trim data to just a list of numbers (remove input to get just prefixes and add back later)
+#Trim data to just a list of numbers.
 data = [data.replace("(","")for data in data]
 data = [data.replace(")","")for data in data]
 data = [data.replace(" ","")for data in data]
