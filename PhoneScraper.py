@@ -21,7 +21,7 @@ else:
 areacode = input ("Enter the area code you would like to make a wordlist for. Use the following format '123'. \n")
 
 #Read the webpage for the specified area code. This code pretends to be a browser to allow for scraping.
-req = Request('https://www.allareacodes.com/' + areacode, headers={'User-Agent': 'Mozilla/5.0'})
+req = Request('!!Site URL Containing Area Codes and Prefixes Goes Here. Depending on site you may need to alter the parser and regex slightly!!' + areacode, headers={'User-Agent': 'Mozilla/5.0'})
 webpage = urlopen(req).read()
 
 #Parse and clean html down to the content we want.
@@ -43,7 +43,17 @@ with open ("scripttemp.txt") as file:
 data = [data.replace("(","")for data in data]
 data = [data.replace(")","")for data in data]
 data = [data.replace(" ","")for data in data]
-print (data)
+#print (data)
+
+#Open file for final output and iterate through data.
+output = open(areacode+".txt","a")
+
+i = 0000
+print ("Creating wordlist. This should take approximately 60 seconds.")
+
+for n in data:
+    for i in range (0000, 10000):
+        print (str(n)+'{0:04}'.format(i), file=output)
 
 #Clean up files and finish script.
 print ("Cleaning up files...")
