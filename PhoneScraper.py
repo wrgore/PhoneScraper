@@ -21,7 +21,7 @@ else:
 areacode = input ("Enter the area code you would like to make a wordlist for. Use the following format '123'. \n")
 
 #Read the webpage for the specified area code. This code pretends to be a browser to allow for scraping.
-req = Request('!!Site URL Containing Area Codes and Prefixes Goes Here. Depending on site you may need to alter the parser and regex slightly!!' + areacode, headers={'User-Agent': 'Mozilla/5.0'})
+req = Request('https://www.allareacodes.com/' + areacode, headers={'User-Agent': 'Mozilla/5.0'})
 webpage = urlopen(req).read()
 
 #Parse and clean html down to the content we want.
