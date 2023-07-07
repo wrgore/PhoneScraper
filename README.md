@@ -1,4 +1,2 @@
 # PhoneScraper
-This is a script to take take a list of prefixes for an area code and turn them into a wordlist with all possible phone numbers. It is an updated version of the phonelist project. However, I found it to be different enough from phonelist.py that I felt it deserved it's own repository.
-
-Project is no longer in development.
+This is a script to take take a list of prefixes for an area code and turn them into a wordlist with all possible phone numbers. It is a more dynamic version of the phonelist project.
